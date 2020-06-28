@@ -1,0 +1,66 @@
+<div class="header-margin">
+<nav class="main-header navbar navbar-expand navbar-white border-bottom fixed-top border-primary ">
+  <ul class="navbar-nav">
+    <% random_number = rand(1..6) %>
+    <% case random_number %>
+    <% when 1 %>
+      <%= image_tag ("logo.jpg")%>
+    <% when 2 %>
+        <%= image_tag ("logo_dadaism.jpg")%>
+    <% when 3 %>
+        <%= image_tag ("logo_defolation.jpg")%>
+    <% when 4 %>
+        <%= image_tag ("logo_fauvism.jpg")%>
+    <% when 5 %>
+        <%= image_tag ("logo_magick_cube.jpg")%>
+    <% when 6 %>
+        <%= image_tag ("logo_sponge.jpg")%>
+    <% end %>
+  <li class="nav-item d-none d-sm-inline-block">
+      <%= link_to t('professors'), professors_path(), class: "btn", style: 'color:#01a0e2;'%>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+      <%= link_to t('declarations'), declarations_path(belongs_to_page: 'declarations'), class: "btn", style: 'color:#01a0e2;'%>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+      <%= link_to t('to_enrollee'), declarations_path(belongs_to_page: 'to enrollee'), class: "btn", style: 'color:#01a0e2;'%>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+      <%= link_to t('to_students'), declarations_path(belongs_to_page: 'to students'), class: "btn", style: 'color:#01a0e2;'%>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+      <%= link_to t('to_graduates'), declarations_path(belongs_to_page: 'to graduates'), class: "btn", style: 'color:#01a0e2;'%>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+      <%= link_to t('reviews'), reviews_path, class: "btn", style: 'color:#01a0e2;'%>
+    </li>
+    <% if request.query_parameters['locale'] == 'en' %>
+      <li class="nav-item d-none d-sm-inline-block">
+        <%= link_to t('locale'), { :locale=>'ru'}, class: "btn", style: 'background-color: #01a0e2; color:#ffffff;'%>
+      </li>
+    <% elsif request.query_parameters['locale'] == 'ru' %>
+      <li class="nav-item d-none d-sm-inline-block">
+        <%= link_to t('locale'), { :locale=>'en'}, class: "btn", style: 'background-color: #01a0e2; color:#ffffff;'%>
+      </li>
+    <% end %>
+    <% if !current_admin_user %>
+      <li class="nav-item d-none d-sm-inline-block ">
+        <%= link_to t('sign_in'), new_admin_user_session_path, class: "btn ", style: 'position:fixed; top:10px; right:10px; background-color: #01a0e2; color:#ffffff;'%>
+      </li>
+    <% elsif current_admin_user && current_admin_user.role == 'admin' %>
+      <li class="nav-item d-none d-sm-inline-block ">
+        <%= link_to t('admin'), admin_admin_users_path, class: "btn ", style: 'position:fixed; top:10px; right:10px; background-color: #01a0e2; color:#ffffff;'%>
+      </li>
+    <% else %>
+      <li class="nav-item d-none d-sm-inline-block ">
+        <%= link_to t('sign_out'), destroy_admin_user_session_path, class: "btn ", style: 'position:fixed; top:10px; right:10px; background-color: #01a0e2; color:#ffffff;'%>
+      </li>
+    <% end %>
+
+  </ul>
+</nav>
+<div style = "position:fixed; top:10px; right:10px; background-color: #01a0e2">
+
+  </ul>
+</div>
+</div>

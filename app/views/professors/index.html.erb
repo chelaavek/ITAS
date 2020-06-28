@@ -1,0 +1,52 @@
+<h3 style = "text-align: center"> <%= t('professors') %> </h3>
+<div style = "position:absolute; top:150px; left:30px;">
+<table cellpadding="6" cellspacing="0">
+  <tbody>
+  <tr>
+    <% @professors.each do |professor| %>
+      <tr>
+        <td valign="top">
+          <% if professor.image.attached? %>
+              <%= image_tag (professor.image), :class => 'professor_image' %>
+          <% end %>
+        </td>
+        <td valign="middle" width="100%">
+          <b><%= professor.name %></b>
+          <br><%= professor.position %>
+          <br><%= link_to t('Personal page'), professor_path(professor.id) %>
+          <br><%= t('auditorium') + professor.cabinet%>
+          <br><%= t('phone_number') + professor.phone_number %>
+          <br><%= "E-mail: #{professor.email}" %>
+        </td>
+      </tr>
+        <tr>
+          <td colspan="2" valign="top">
+            <% if professor.courses != ''  %>
+              <p>
+                <b><br><%= t('courses') %></b>
+                <%= simple_format(professor.courses) if professor.courses %>
+                <br>
+              </p>
+            <% end %>
+            <% if professor.researches != ''  %>
+              <p>
+                <b><br><%= t('researches') %></b>
+                <%= professor.researches %>
+                <br>
+              </p>
+            <% end %>
+            <% if professor.publications != ''  %>
+              <p>
+                <b><br><strong> <%= t('publications') %> </strong></b>
+                <%= simple_format(professor.publications) if professor.publications %>
+                <br>
+              </p>
+            <% end %>
+            <hr size="1" width="98%" color="#01a0e2">
+          </td>
+        </tr>
+    <% end %>
+  </tr>
+  </tbody>
+</table>
+</div>

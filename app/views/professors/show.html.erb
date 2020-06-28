@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+<div class="professor-show">
+<p>
+  <strong><%= @professor.name %></strong>
+</p>
+
+<p>
+  <%= @professor.position %>
+</p>
+
+<p class="professor-image">
+  <%= image_tag (@professor.image), :class => 'professor_image' %>
+</p>
+
+<p>
+  <% t('auditorium') %>
+  <%= @professor.cabinet %>
+</p>
+
+<p>
+  <% t('phone_number') %>
+  <%= @professor.phone_number %>
+</p>
+
+<p>
+  <% 'e-mail: ' %>
+  <%= @professor.email %>
+</p>
+
+<p>
+  <% t('declarations') %>
+  <% if @professor.documents.attached? %>
+      <% @professor.documents.each do |document| %>
+        <p><%= link_to "#{document.filename}", rails_blob_path(document, disposition: 'attachment') %></p>
+    <% end %>
+<% end %>
+</p>
+</div>
